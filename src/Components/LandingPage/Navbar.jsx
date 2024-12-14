@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import logo from '../images/car-logo.png';
+import logo from '../../images/car-logo.png';
 import { Link } from 'react-scroll';
-import '../styles/nav.css'
+import '../../styles/nav.css'
+import { useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
+
+    const navigate = new useNavigate();
 
     const [nav, setnav] = useState(false);
 
@@ -19,6 +22,10 @@ function Navbar() {
 
     window.addEventListener('scroll', changeBackground);
 
+    const SignUpClick = ()=>{
+        navigate('/signup')
+    }
+
     return (
         <header>
             <nav className={nav ? "nav active" : "nav"} >
@@ -31,12 +38,11 @@ function Navbar() {
                     <li><Link to='hero' smooth={true} duration={1700} >HOME</Link></li>
                     <li><Link to='about' smooth={true} duration={1700} >ABOUT</Link></li>
                     <li><Link to='vehicules' smooth={true} duration={1700} >MARQUES</Link></li>
-                    <li><Link to='review' smooth={true} duration={1700} >CLIENTS</Link></li>                  
+                    <li><Link to='review' smooth={true} duration={1700} >CLIENTS</Link></li>
                     <li><Link to='#' smooth={true} duration={1700} >CONTACT</Link></li>
                 </ul>
-                <Link to='signup' className='sign-up-btn' smooth={true} duration={1000}>
-                    Sign Up <i className="fas fa-user-circle"></i>
-                </Link>
+                <button onClick={SignUpClick} className="sign-up-btn" >Sign Up <i className="fas fa-user-circle"></i></button>
+                
 
 
             </nav>

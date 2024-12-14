@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import '../styles/cars.css';
-import vec1 from '../images/mercedes.png';
-import vec2 from '../images/bmw.png';
-import vec3 from '../images/toyota.png';
+import '../../styles/cars.css';
+import vec1 from '../../images/mercedes.png';
+import vec2 from '../../images/bmw.png';
+import vec3 from '../../images/toyota.png';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import 'swiper/css';

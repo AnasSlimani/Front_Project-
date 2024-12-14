@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import bgLight from '../images/bg-light.jpg';
-import bgDark from '../images/bg.jpg';
+import bgLight from '../../images/bg-light.jpg';
+import bgDark from '../../images/bg.jpg';
 import Typed from "typed.js";
 
 function Header() {

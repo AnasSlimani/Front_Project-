@@ -1,25 +1,19 @@
 import React from 'react';
-import Navbar from './Components/Navbar';
-import Header from './Components/Header';
-import About from './Components/About';
-import Services from './Components/Services';
-import Cars from './Components/Cars';
-import Clients from './Components/Clients';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/pagelanding/LandingPage'
+import UserDash from './pages/userDashbord/UserDash';
+
 
 function App(){
-  
-  
   return (
-    <div>
-      <Navbar />
-      <Header />
-      <About />
-      <Services />
-      <Cars />
-      <Clients />
-      
-    </div>
-  )
+    
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<UserDash />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App

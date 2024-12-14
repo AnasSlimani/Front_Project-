@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import '../styles/clients.css';
-import client1 from '../images/anas.jpg';
-import client2 from '../images/badr.jpg';
-import client3 from '../images/ihab.jpg';
-import client4 from '../images/said.jpg';
+import '../../styles/clients.css';
+import client1 from '../../images/anas.jpg';
+import client2 from '../../images/badr.jpg';
+import client3 from '../../images/ihab.jpg';
+import client4 from '../../images/said.jpg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Swiper from 'swiper';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ParticlesBackground from '../Components/ParticlesBackground';
+
 
 function Clients() {
   useEffect(() => {

@@ -1,13 +1,15 @@
 import React from 'react'
-import './UserDashboard.css'
+import Header from '../../Components/UserDash/Header'
+import FilterSection from '../../Components/UserDash/FilterSection'
+import UserDashboard from '../../Components/UserDash/UserDashboard'
+
 
 const UserDash = () => {
   return (
     <>
-        header
-        filtreage
-        cars
-        panier
+        <Header />
+        <FilterSection />
+        <UserDashboard />
     </>
   )
 }
