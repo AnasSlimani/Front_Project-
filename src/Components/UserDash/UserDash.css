@@ -2,14 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.navuser {
-    background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
 
+body {
+    background-image: url('../../images/black\ walp.jpg'); /* Adjust path */
+    background-size: cover; /* Makes the image cover the whole screen */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    background-position: center; /* Center the image */
 }
 
-div.test {
+/* .navuser {
     background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+
+} */
+
+
+
+div.test {
+    /* background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%); */
     padding: 10px;
+    padding-top: 60px !important;
 }
 
 /* Style the main filter container */
@@ -27,9 +39,15 @@ div.filter {
     -webkit-backdrop-filter: blur(50px); /* For Safari support */
     max-width: 800px;
     margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for glass effect */
 }
 
+
+div.filter:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
 
 /* Style the filter-select form */
 form.filter-select {
@@ -38,6 +56,11 @@ form.filter-select {
     justify-content: center;
     gap: 15px;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-transform: capitalize;
 }
 
 /* Style each select element */
@@ -45,19 +68,33 @@ form.filter-select select {
     padding: 10px 15px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    /* background-color: #fff; */
     font-size: 14px;
     color: #333;
     max-width: 200px;
     flex: 1;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Focus styling for select elements */
 form.filter-select select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color:#880000;
+    box-shadow: 0 0 5px rgba(127, 5, 19, 0.5);
     outline: none;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #880000 !important;
+    
+}
+form.filter-select select:hover {
+    background-color: #f3060a;
 }
 
 /* Style the second form with search input and button */
@@ -75,33 +112,47 @@ div.filter form:last-of-type input[type='text'] {
     padding: 10px 15px;
     border: 2px solid #ccc;
     border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    color: #333;
+    font-weight: 400;
+    color: #f4f4f4;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
+
+div.filter form:last-of-type input[type='text']::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 
 /* Focus styling for the input field */
 div.filter form:last-of-type input[type='text']:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: rgba(127, 5, 19, 0.5);
+    box-shadow: 0 0 8px rgba(177, 15, 15, 0.6);
+    outline: none;
 }
 
 /* Style the search button */
 div.filter form:last-of-type button {
     padding: 10px 20px;
     border: none;
-    background-color: #007bff;
+    background: linear-gradient(to right, #880000, #aa192c);
     color: white;
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 /* Hover effect for the button */
+
 div.filter form:last-of-type button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to right, #880000, #aa192c);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .gym-text {
@@ -109,6 +160,11 @@ div.filter form:last-of-type button:hover {
     /* Gold gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+form.filter-select select:valid {
+    background-color: #e0f4ff;
+    color: rgba(127, 5, 19, 0.5);
 }
 
 .gradient-button {

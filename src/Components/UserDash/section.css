@@ -8,12 +8,20 @@
 
 .main > div:first-child {
     flex: 8; /* Cars: 70% */
-    background-color: aqua;
     min-height: 100%; /* Ensure it stretches to match the parent height */
 }
 
 
 .main > div:last-child {
     flex: 2; /* Cars: 70% */
-    background-color: yellowgreen;
+    color: aliceblue;
 }
+
+@media screen and (max-width: 768px) {
+    .main > div:first-child {
+        flex: 10;
+    }
+    .main > div:last-child{
+        display: none;
+    }
+  }
