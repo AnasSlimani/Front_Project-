@@ -29,7 +29,7 @@ const Cars = () => {
                   <h2 className="card__title"><img src={MercLogo} alt="BMW Logo" className="iconse" />BMW X5</h2>
                   <div className="buttons">
                   <a href="#" className="card__button">Read More</a>
-                  <button onClick={() => handleReserveClick('BMW X5')}>RESERVE</button>
+                  <button>RESERVE</button>
                   </div>
                </div>
             </article>
@@ -41,7 +41,7 @@ const Cars = () => {
                   <h2 className="card__title"><img src={bmwLogo} alt="BMW Logo" className="iconse" />The Great Path</h2>
                   <div className="buttons">
                   <a href="#" className="card__button">Read More</a>
-                  <button onClick={() => handleReserveClick('BMW X5')}>RESERVE</button>
+                  <button>RESERVE</button>
                   </div>
                </div>
             </article>
@@ -53,7 +53,7 @@ const Cars = () => {
                   <h2 className="card__title"><img src={ToyotaLogo} alt="BMW Logo" className="iconse" />The Great Path</h2>
                   <div className="buttons">
                   <a href="#" className="card__button">Read More</a>
-                  <button onClick={() => handleReserveClick('BMW X5')}>RESERVE</button>
+                  <button>RESERVE</button>
                   </div>
                </div>
             </article>
@@ -66,7 +66,7 @@ const Cars = () => {
                   <h2 className="card__title"><img src={MercLogo} alt="BMW Logo" className="iconse" />Starry Night</h2>
                   <div className="buttons">
                   <a href="#" className="card__button">Read More</a>
-                  <button onClick={() => handleReserveClick('BMW X5')}>RESERVE</button>
+                  <button>RESERVE</button>
                   </div>
                </div>
             </article>
@@ -79,7 +79,7 @@ const Cars = () => {
                   <h2 className="card__title"><img src={MercLogo} alt="BMW Logo" className="iconse" />Path Of Peace</h2>
                   <div className="buttons">
                   <a href="#" className="card__button">Read More</a>
-                  <button onClick={() => handleReserveClick('BMW X5')}>RESERVE</button>
+                  <button>RESERVE</button>
                   </div>
                </div>
             </article>

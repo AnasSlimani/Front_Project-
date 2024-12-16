@@ -4,11 +4,12 @@
 
 
 body {
-    background-image: url('../../images/black\ walp.jpg'); /* Adjust path */
-    background-size: cover; /* Makes the image cover the whole screen */
-    background-repeat: no-repeat; /* Prevent repeating */
-    background-attachment: fixed; /* Keeps the image fixed while scrolling */
-    background-position: center; /* Center the image */
+    background-image: url('../../images/black\ walp.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-position: center; 
+    /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); */
 }
 
 /* .navuser {
@@ -223,4 +224,37 @@ form.filter-select select:valid {
     /* Gold gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Style pour le champ date (input type='date') */
+input[type='date'] {
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    font-size: 14px;
+    color: #333;
+    max-width: 200px;
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+/* Focus styling pour le champ date */
+input[type='date']:focus {
+    border-color: #880000;
+    box-shadow: 0 0 5px rgba(127, 5, 19, 0.5);
+    outline: none;
+    font-weight: bold;
+    color: #880000;
+}
+
+/* Hover styling pour le champ date */
+input[type='date']:hover {
+    background-color: #f3060a;
+    color: rgb(182, 40, 40);
+    transition: background 0.3s ease;
 }

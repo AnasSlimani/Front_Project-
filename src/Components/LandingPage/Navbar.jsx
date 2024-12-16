@@ -23,7 +23,7 @@ function Navbar() {
     window.addEventListener('scroll', changeBackground);
 
     const SignUpClick = ()=>{
-        navigate('/signup')
+        navigate('/login')
     }
 
     return (

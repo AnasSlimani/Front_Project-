@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/pagelanding/LandingPage'
 import UserDash from './pages/userDashbord/UserDash';
 import NavBar from './Components/LandingPage/Navbar';
+import SignUp from './pages/signup/SignUp'
 
 
 function App(){
@@ -13,6 +14,7 @@ function App(){
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<UserDash />} />
+        <Route path="/login" element={<SignUp />} />
       </Routes>
     </Router>
     </>

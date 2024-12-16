@@ -8,11 +8,13 @@ import "aos/dist/aos.css";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Swiper from 'swiper';
+import { useNavigate } from "react-router-dom";
 
 
 
 
 function Cars() {
+    const navigate = new useNavigate()
     useEffect(() => {
         AOS.init({
           duration: 1000,     
@@ -46,6 +48,11 @@ function Cars() {
             },
         }); 
     }, []);
+
+    const toCars=() =>{
+        navigate('/signup')
+    }
+
       return (
         <section className='vehicules' id='vehicules'  >
             <h1 className="headinge" data-aos="fade-up" >
@@ -67,7 +74,7 @@ function Cars() {
                             <span className='fas fa-circle'></span> petrol
                             <span className='fas fa-circle'></span> 183mph
                         </p>
-                        <a href="#" className='btn'>check out</a>
+                        <a href="#" className='btn' onClick={toCars} >check out</a>
                     </div>
                 </div>
                 <div className="swiper-slide box">
