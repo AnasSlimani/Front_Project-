@@ -20,6 +20,9 @@ header nav {
 header nav.active{
 	box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.157);
 	background-color: #00000000;
+    
+
+    
 }
 header nav ul{
 	display: flex;
@@ -36,6 +39,8 @@ header nav ul{
     color:#ffffff;
 	box-shadow: 5px 10px 30px rgba(198, 64, 64, 0.411);
 	transition: all ease 0.2s;
+    cursor: pointer;
+    
 }
 header nav ul li a{
     font-family: 'Lato';

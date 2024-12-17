@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/pagelanding/LandingPage'
 import UserDash from './pages/userDashbord/UserDash';
 import NavBar from './Components/LandingPage/Navbar';
-
+import AdminDash from './pages/adminDashboard/AdminDash';
+import GestionClient from './Components/Admin/GestionClient';
 
 function App(){
   return (
@@ -13,6 +14,9 @@ function App(){
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<UserDash />} />
+        <Route path="/admin" element={<AdminDash />} />
+        <Route path="/admin/clients" element={<GestionClient />} />
+
       </Routes>
     </Router>
     </>
