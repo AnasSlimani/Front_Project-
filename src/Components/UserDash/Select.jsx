@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
+import './UserDash.css';
 
 export default function Select(props) {
   const { option, values } = props;
 
-  // Default state
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -12,17 +13,24 @@ export default function Select(props) {
 
   return (
     <>
-      {option === "date_debut" ? (
-        <input
-          type="date"
-          name="date_debut"
-          value={selectedValue}
-          className="filter-date"
-          onChange={handleChange}
-        />
+      {/* Champs spécifiques pour date_debut et date_fin */}
+      {option === 'date_debut' || option === 'date_fin' ? (
+        <div className="date-input-container">
+          <input
+            type="date"
+            name={option}
+            value={selectedValue}
+            className="filter-date"
+            onChange={handleChange}
+          />
+          {!selectedValue && (
+            <span className="date-placeholder">
+              {option === 'date_debut' ? 'Date début' : 'Date fin'}
+            </span>
+          )}
+        </div>
       ) : (
         <select name={option} value={selectedValue} onChange={handleChange}>
-          {/* Placeholder option */}
           <option value="" disabled>
             {option}
           </option>

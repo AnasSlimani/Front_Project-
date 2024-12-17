@@ -258,3 +258,8 @@ input[type='date']:hover {
     color: rgb(182, 40, 40);
     transition: background 0.3s ease;
 }
+
+.filter-date:focus + .date-placeholder,
+.filter-date:not(:placeholder-shown) + .date-placeholder {
+  display: none; /* Cache le placeholder si l'utilisateur saisit une valeur */
+}
