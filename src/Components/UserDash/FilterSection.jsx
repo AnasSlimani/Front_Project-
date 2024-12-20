@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './UserDash.css';
 import { Search } from 'lucide-react';
 import Select from './Select';
 
-export default function FilterSection() {
+export default function FilterSection({ onFilterChange }) {
   const [filterOptions, setFilterOptions] = useState({
     marque: [],
     type: [],
@@ -11,6 +10,8 @@ export default function FilterSection() {
     disponibilite: [],
     tarif: ['100', '200', '300'],
   });
+
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
     const fetchFilterOptions = async () => {
@@ -21,9 +22,7 @@ export default function FilterSection() {
           fetch('http://localhost:8082/api/vehicules/annees').then(res => res.json()),
           fetch('http://localhost:8082/api/vehicules/status').then(res => res.json()),
         ]);
-  
-        console.log('Received annees:', annees); // Pour le débogage
-  
+
         setFilterOptions(prevState => ({
           ...prevState,
           marque: Array.isArray(marques) ? marques : [],
@@ -35,9 +34,24 @@ export default function FilterSection() {
         console.error('Error fetching filter options:', error);
       }
     };
-  
+
     fetchFilterOptions();
   }, []);
+
+  const handleFilterChange = (option, value) => {
+    const newFilters = { ...filters };
+  
+    if (newFilters[option] === value) {
+      // Si la valeur sélectionnée est déjà active, on retire le filtre
+      delete newFilters[option];
+    } else {
+      // Sinon, on ajoute/modifie le filtre
+      newFilters[option] = value;
+    }
+  
+    setFilters(newFilters);
+    onFilterChange(newFilters); // Transmet les nouveaux filtres au parent
+  };
 
   const filterSelect = [
     { id: 1, option: 'marque', values: filterOptions.marque },
@@ -54,7 +68,12 @@ export default function FilterSection() {
       <div className="filter">
         <form className="filter-select">
           {filterSelect.map((filter) => (
-            <Select key={filter.id} option={filter.option} values={filter.values} />
+            <Select 
+              key={filter.id} 
+              option={filter.option} 
+              values={filter.values} 
+              onChange={(value) => handleFilterChange(filter.option, value)}
+            />
           ))}
         </form>
 
@@ -68,3 +87,4 @@ export default function FilterSection() {
     </div>
   );
 }
+

@@ -1,19 +1,16 @@
-
 import React, { useState } from 'react';
-import './UserDash.css';
 
-export default function Select(props) {
-  const { option, values } = props;
-
+export default function Select({ option, values, onChange }) {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    const value = event.target.value;
+    setSelectedValue(value);
+    onChange(value);
   };
 
   return (
     <>
-      {/* Champs spécifiques pour date_debut et date_fin */}
       {option === 'date_debut' || option === 'date_fin' ? (
         <div className="date-input-container">
           <input
@@ -31,9 +28,7 @@ export default function Select(props) {
         </div>
       ) : (
         <select name={option} value={selectedValue} onChange={handleChange}>
-          <option value="" disabled>
-            {option}
-          </option>
+          <option value="">{option} </option>
           {values.map((value) => (
             <option key={value} value={value}>
               {value}
@@ -44,3 +39,4 @@ export default function Select(props) {
     </>
   );
 }
+

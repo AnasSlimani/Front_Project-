@@ -8,7 +8,6 @@ import NavBare from '../../Components/LandingPage/NavBare'
 const UserDash = () => {
   return (
     <>
-        <FilterSection />
         <UserDashboard />
     </>
   )
