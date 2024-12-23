@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Cars.css'
-import MercLogo from '../../images/mercedessvg.svg';
 import ReservationForm from './ReservationForm';
+import {Link} from 'react-router-dom'
 
 const Cars = ({ filters }) => {
   const [showForm, setShowForm] = useState(false);
@@ -43,7 +43,7 @@ const Cars = ({ filters }) => {
               <span className="card__description">Prix : {car.prix} , Etat : {car.status}</span>
               <h2 className="card__title"><img src={`http://localhost:8082${car.logoPath}`} alt="Car Logo" className="iconse" />{car.marque} {car.modele} </h2>
               <div className="buttons">
-                <a href="#" className="card__button">Read More</a>
+                <Link to={'/CarDetail/'+car.id}><a href="#" className="card__button">Read More</a></Link> 
                 <button onClick={() => handleReserveClick(`${car.marque} ${car.modele}`)}>RESERVE</button>
               </div>
             </div>

@@ -5,6 +5,7 @@ import UserDash from './pages/userDashbord/UserDash';
 import NavBar from './Components/LandingPage/Navbar';
 import AdminDash from './pages/adminDashboard/AdminDash';
 import SignUp from './pages/signup/SignUp'
+import CarDetail from './pages/CarDetails/CarDetail';
 
 
 function App(){
@@ -17,6 +18,7 @@ function App(){
         <Route path="/signup" element={<UserDash />} />
         <Route path='/admin' element={<AdminDash />} />
         <Route path="/login" element={<SignUp />} />
+        <Route path="/CarDetail/:id" element={<CarDetail />} />
       </Routes>
     </Router>
     </>
@@ -24,3 +26,4 @@ function App(){
 }
 
 export default App
+
