@@ -2,31 +2,42 @@ import React, { useState, useEffect } from 'react'
 import './Cars.css'
 import ReservationForm from './ReservationForm';
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Cars = ({ filters }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedCar, setSelectedCar] = useState('');
   const [cars, setCars] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCars = async () => {
-      try {
-        let url = "http://localhost:8082/api/vehicules/filtered?";
-        Object.entries(filters).forEach(([key, value]) => {
-          if (value) {
-            url += `${key}=${encodeURIComponent(value)}&`;
-          }
-        });
-        const response = await fetch(url);
-        const data = await response.json();
-        setCars(data);
-      } catch (error) {
-        console.log("Error fetching the cars: ", error);
-      }
+        try {
+            let url = "http://localhost:8082/api/vehicules/filtered?";
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value) {
+                    url += `${key}=${encodeURIComponent(value)}&`;
+                }
+            });
+
+            const token = localStorage.getItem("jwtToken");
+            const response = await fetch(url);
+            if (response.status === 401) {
+              alert("Session expire");
+              navigate("/login");
+            }
+            if (response.ok) {
+                const data = await response.json();
+                setCars(data);
+            } else {
+                console.error("Failed to fetch cars, status:", response.status);
+            }
+        } catch (error) {
+            console.log("Error fetching the cars: ", error);
+        }
     };
 
     fetchCars();
-  }, [filters]);
+}, [filters]);
 
   const handleReserveClick = (carName) => {
     setSelectedCar(carName);

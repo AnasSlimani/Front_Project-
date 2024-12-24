@@ -1,14 +1,20 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Description(props) {
     const CARid = props.ID;
+    const navigate = useNavigate();
     const [car, setCar] = useState([]);
+    const token = localStorage.getItem("jwtToken");
     useEffect(() => {
         const fetchCar = async () => {
             try {
                 const response = await fetch(`http://localhost:8082/api/vehicules/${CARid}`);
+                if (response.status === 401) {
+                    alert("Session expire");
+                    navigate("/login");
+                  }
                 const data = await response.json();
                 setCar(data)
             } catch (error) {

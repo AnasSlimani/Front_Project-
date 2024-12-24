@@ -12,6 +12,7 @@ export default function FilterSection({ onFilterChange }) {
   });
 
   const [filters, setFilters] = useState({});
+  const token = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     const fetchFilterOptions = async () => {
@@ -20,7 +21,7 @@ export default function FilterSection({ onFilterChange }) {
           fetch('http://localhost:8082/api/vehicules/marques').then(res => res.json()),
           fetch('http://localhost:8082/api/vehicules/types').then(res => res.json()),
           fetch('http://localhost:8082/api/vehicules/annees').then(res => res.json()),
-          fetch('http://localhost:8082/api/vehicules/status').then(res => res.json()),
+          fetch('http://localhost:8082/api/vehicules/status'  ).then(res => res.json()),
         ]);
 
         setFilterOptions(prevState => ({

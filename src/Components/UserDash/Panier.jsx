@@ -2,6 +2,7 @@ import React from 'react';
 import './Panier.css';
 import { FaTimes, FaTrashAlt } from 'react-icons/fa'; // Import icons from react-icons
 
+const token = localStorage.getItem("jwtToken");
 const Panier = ({ onTogglePanier }) => {
   return (
     <>

@@ -1,31 +1,37 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { FaCheck } from "react-icons/fa";
-
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Features(props) {
     const CARid = props.ID;
+    const navigate = useNavigate();
     const [car, setCar] = useState([]);
     const [features, setFeatures] = useState([]);
-    
+    const token = localStorage.getItem("jwtToken");
     useEffect(() => {
         const fetchCar = async () => {
             try {
                 const response = await fetch(`http://localhost:8082/api/vehicules/${CARid}`);
+                if (response.status === 401) {
+                    alert("Session expire");
+                    navigate("/login");
+                }
                 const data = await response.json();
                 setCar(data);
                 if (data.features) {
                     const parsedFeatures = typeof data.features === 'string' ? JSON.parse(data.features) : data.features;
-                    setFeatures(Object.entries(parsedFeatures)); // Convert object to array for mapping
+                    setFeatures(Object.entries(parsedFeatures));
                 }
             } catch (error) {
                 console.log("Error fetching the car: ", error.message);
             }
         };
-
+    
         fetchCar();
-    }, [CARid]);
+    }, [CARid, navigate, token]);
+    
 
     return (
         <div className='p-10 border-2 shadow-md rounded-xl my-7 text-white'>

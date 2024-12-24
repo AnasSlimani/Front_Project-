@@ -8,6 +8,7 @@ import Description from './Description'
 import Features from './Features'
 import Pricing from './Pricing'
 import Specifications from './Specifications'
+import { useNavigate } from 'react-router-dom';
 
 const Cardetails = (props) => {
   const idCar = props.idCar;

@@ -5,7 +5,7 @@ import
  from 'react-icons/bs'
 
  import { FaCar, FaUsers, FaUserShield,FaCalendarCheck } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SideBarAdmin({openSidebarToggle, OpenSidebar}) {
 
@@ -23,21 +23,22 @@ function SideBarAdmin({openSidebarToggle, OpenSidebar}) {
   return (
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
-            <div className='sidebar-brand'>
-                 Welcome Ihab 
-            </div>
+        <div className='sidebar-brand text-black'>
+           Welcome Ihab
+        </div>
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <a href="">
-                    <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
+                
+                <Link to="/admin" >
+                <BsGrid1X2Fill className='icon'/> Dashboard
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <a href="">
-                    <FaCalendarCheck className='icon'/> Reservations
+                    <FaCalendarCheck className='icon '/> Reservations
                 </a>
             </li>
             <li className='sidebar-list-item'>
@@ -51,9 +52,12 @@ function SideBarAdmin({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li> */}
             <li className='sidebar-list-item'>
-                <a href="">
+                {/* <a href="">
                     <FaUsers className='icon'/> Clients 
-                </a>
+                </a> */}
+                <Link to="/admin/clients" >
+                <FaUsers className='icon'/> Clients 
+                </Link>
             </li>
             <li className='sidebar-list-item'>
                 <a href="">

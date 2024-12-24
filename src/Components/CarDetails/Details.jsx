@@ -15,6 +15,7 @@ const Details = (props) => {
   console.log(props.ID);
   const CARid = props.ID;
   const [car, setCar] = useState([]);
+  const token = localStorage.getItem("jwtToken");
   useEffect(() => {
     const fetchCar = async () => {
       try {

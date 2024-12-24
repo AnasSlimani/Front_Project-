@@ -63,28 +63,28 @@ function HomeAdmin() {
         </div>
 
         <div className='main-cards'>
-            <div className='card'>
-                <div className='card-inner'>
+            <div className='card text-black'>
+                <div className='card-inner '>
                     <h3>Reservations</h3>
                     <FaCalendarCheck className='card_icon'/>
                 </div>
                 <h1>300</h1>
             </div>
-            <div className='card'>
-                <div className='card-inner'>
+            <div className='card text-black'>
+                <div className='card-inner '>
                     <h3>Vehicules</h3>
                     <FaCar className='card_icon'/>
                 </div>
                 <h1>12</h1>
             </div>
-            <div className='card'>
+            <div className='card text-black'>
                 <div className='card-inner'>
                     <h3>Clients</h3>
                     <FaUsers className='card_icon'/>
                 </div>
                 <h1>33</h1>
             </div>
-            <div className='card'>
+            <div className='card text-black'>
                 <div className='card-inner'>
                     <h3>Chiffre d'affaires</h3>
                     <FaDollarSign className='card_icon'/>

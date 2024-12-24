@@ -1,139 +1,199 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import SideBarAdmin from "./SideBarAdmin";
+import FormAddUser from "./FormAddUser";
+import UpdateUser from "./UpdateUser";
+
+
+import { Container, Row, Col, Table, Button, Form } from "react-bootstrap";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function GestionClient() {
-  // Exemple de données clients (à remplacer par vos données depuis une API ou une base de données)
-  const [clients, setClients] = useState([
-    { id: 1, firstName: 'Ihab', lastName: 'Mansouri', email: 'ihab@example.com' },
-    { id: 2, firstName: 'Amine', lastName: 'Hassan', email: 'amine@example.com' },
-    { id: 3, firstName: 'Sarah', lastName: 'El Fassi', email: 'sarah@example.com' },
-    { id: 4, firstName: 'Karim', lastName: 'Bouzid', email: 'karim@example.com' },
-  ]);
-
-  // États pour les champs de filtrage
+  const [utilisateurs, setUtilisateur] = useState([]);
   const [filter, setFilter] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: "",
+    lastName: "",
+    email: "",
   });
 
-  // Fonction pour gérer les changements dans les champs de filtrage
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUtilisateurs = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8082/api/utilisateur/AllUtilisateurs"
+        );
+        const data = await response.json();
+        setUtilisateur(data);
+        console.log(utilisateurs);
+      } catch (err) {
+        console.error("Erreur fetching users:", err.message);
+      }
+    };
+
+    fetchUtilisateurs();
+  }, []);
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilter((prevFilter) => ({ ...prevFilter, [name]: value }));
   };
 
-  // Fonction pour supprimer un client
-  const handleDelete = (id) => {
-    setClients((prevClients) => prevClients.filter((client) => client.id !== id));
-    alert(`Client avec l'ID ${id} supprimé.`);
+  const handleDelete = async (id) => {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+      try {
+        const response = await fetch(`http://localhost:8082/api/utilisateur/${id}`, {
+          method: "DELETE",
+        });
+  
+        if (response.ok) {
+          // Met à jour la liste des utilisateurs après suppression
+          setUtilisateur((prevUtilisateurs) =>
+            prevUtilisateurs.filter((utilisateur) => utilisateur.id !== id)
+          );
+          alert("Utilisateur supprimé avec succès.");
+        } else {
+          alert("Erreur : Impossible de supprimer l'utilisateur.");
+        }
+      } catch (err) {
+        console.error("Erreur lors de la suppression :", err.message);
+        alert("Erreur de réseau ou serveur.");
+      }
+    }
   };
 
-  // Fonction pour mettre à jour un client
+  
+
+  
   const handleUpdate = (id) => {
-    alert(`Mettre à jour le client avec l'ID ${id}`);
-    // Ici, vous pouvez ajouter la logique pour ouvrir un formulaire de mise à jour.
+    navigate(`/admin/clients/UpdateUser/${id}`);
   };
 
-  // Filtrage des clients en fonction des champs de recherche
-  const filteredClients = clients.filter((client) =>
-    client.firstName.toLowerCase().includes(filter.firstName.toLowerCase()) &&
-    client.lastName.toLowerCase().includes(filter.lastName.toLowerCase()) &&
-    client.email.toLowerCase().includes(filter.email.toLowerCase())
+  
+
+  const filteredUtilisateurs = utilisateurs.filter(
+    (utilisateur) =>
+      utilisateur.firstName
+        .toLowerCase()
+        .includes(filter.firstName.toLowerCase()) &&
+      utilisateur.lastName
+        .toLowerCase()
+        .includes(filter.lastName.toLowerCase()) &&
+      utilisateur.email.toLowerCase().includes(filter.email.toLowerCase())
   );
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Gestion des Clients</h1>
+    <Container
+      fluid
+      style={{ backgroundColor: "white", color: "black", minHeight: "100vh" }}
+    >
+      <Row>
+        {/* Sidebar */}
+        <Col md={2} className="bg-dark vh-100">
+          <SideBarAdmin />
+        </Col>
 
-      {/* Barre de filtrage */}
-      <div style={{ marginBottom: '20px' }}>
-        <h3>Filtrer les Clients</h3>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="Filtrer par Prénom"
-          value={filter.firstName}
-          onChange={handleFilterChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Filtrer par Nom"
-          value={filter.lastName}
-          onChange={handleFilterChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Filtrer par Email"
-          value={filter.email}
-          onChange={handleFilterChange}
-          style={{ marginRight: '10px', padding: '5px' }}
-        />
-      </div>
+        {/* Main Content */}
+        <Col md={10}>
+          <Container className="mt-4">
+            <Row className="mb-4">
+              <Col>
+                <div className="d-flex justify-content-between align-items-center">
+                  <h2>Filtrer les Utilisateurs</h2>
+                  <Link to="/admin/clients/FormAddUser">
+                  <Button variant="success" type="button" className="mt-3">
+                    Add User
+                  </Button>
+                  </Link>
+                  
+                </div>
 
-      {/* Liste des clients filtrés */}
-      <table border="1" width="100%" cellPadding="10" style={{ textAlign: 'left' }}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Actions</th> {/* Colonne pour les boutons */}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredClients.length > 0 ? (
-            filteredClients.map((client) => (
-              <tr key={client.id}>
-                <td>{client.id}</td>
-                <td>{client.firstName}</td>
-                <td>{client.lastName}</td>
-                <td>{client.email}</td>
-                <td>
-                  <button
-                    onClick={() => handleUpdate(client.id)}
-                    style={{
-                      marginRight: '10px',
-                      padding: '5px 10px',
-                      backgroundColor: 'blue',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '5px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(client.id)}
-                    style={{
-                      padding: '5px 10px',
-                      backgroundColor: 'red',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '5px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" style={{ textAlign: 'center' }}>
-                Aucun client trouvé
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+                <Form>
+                  <Row>
+                    <Col>
+                      <Form.Group controlId="filterFirstName">
+                        <Form.Label>Prénom</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Filtrer par Prénom"
+                          name="firstName"
+                          value={filter.firstName}
+                          onChange={handleFilterChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group controlId="filterLastName">
+                        <Form.Label>Nom</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Filtrer par Nom"
+                          name="lastName"
+                          value={filter.lastName}
+                          onChange={handleFilterChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group controlId="filterEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Filtrer par Email"
+                          name="email"
+                          value={filter.email}
+                          onChange={handleFilterChange}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+
+          <Container>
+            <Row>
+              <Col>
+                <h1 className="text-center">Utilisateurs</h1>
+                <Table striped bordered hover responsive>
+                  <thead>
+                    <tr>
+                      <th>FirstName</th>
+                      <th>LastName</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+  {filteredUtilisateurs.map((utilisateur) => (
+    <tr key={utilisateur.id}>
+      <td>{utilisateur.firstName}</td>
+      <td>{utilisateur.lastName}</td>
+      <td>{utilisateur.email}</td>
+      <td>{utilisateur.phone}</td>
+      <td>{utilisateur.role}</td>
+      <td className="flex  gap-2 justify-center align-middle align-top" >
+        <Button className="mt-2" variant="outline-success" onClick={() => handleUpdate(utilisateur.id)}>
+          Update
+        </Button>
+        <Button className="mt-2" variant="outline-danger" onClick={() => handleDelete(utilisateur.id)}>
+          Delete
+        </Button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+                </Table>
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
